@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Paladugu - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232563eb;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%234f46e5;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='45' fill='url(%23grad)'/%3E%3Cpath d='M35 30 L20 50 L35 70 M65 30 L80 50 L65 70' stroke='white' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-title {
+            background: linear-gradient(to right, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            padding-bottom: 0.1em;
+            line-height: 1.1;
+        }
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.5em;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4b5563;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold">Sai Paladugu</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#experience" class="hover:text-blue-600 transition-colors">Experience</a>
+                    <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
+                    <a href="#education" class="hover:text-blue-600 transition-colors">Education</a>
+                    <a href="#skills" class="hover:text-blue-600 transition-colors">Skills</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="text-center max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 hero-title">
+                Sai Paladugu
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                Computer Science Student | Machine Learning Engineer
+            </p>
+            <p class="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
+                Passionate about software development, ML, and solving real-world problems through innovative technology. Currently pursuing a Bachelor's in Computer Science with a 4.0 GPA.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <a href="https://github.com/SaiPaladugu" class="flex items-center gap-2 bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/saipaladugu" class="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="mailto:Saichandan03@gmail.com" class="flex items-center gap-2 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+                <a href="tel:819-329-3980" class="flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors">
+                    <i class="fas fa-phone"></i>
+                    Call
+                </a>
+            </div>
+            <div class="animate-bounce">
+                <a href="#experience" class="inline-block">
+                    <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Experience</h2>
+            <div class="space-y-12">
+                <!-- Recursion -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Machine Learning Research Intern</h3>
+                            <p class="text-xl font-semibold">Recursion</p>
+                            <p class="text-gray-600">Toronto, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">May 2025 – Present</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Co-developing multimodal foundation models with imaging and omics data for phenotypic screening and drug target discovery; contributing to model architecture design and inference optimization</li>
+                        <li>Applied batch effect correction and feature normalization to harmonize omics datasets across experiments, improving generalization in downstream model evaluation</li>
+                    </ul>
+                </div>
+
+                <!-- Nokia Part-Time -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Machine Learning Operations Engineer</h3>
+                            <p class="text-xl font-semibold">Nokia</p>
+                            <p class="text-gray-600">Remote • Part-Time (20 hrs/week)</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Sep 2024 - Apr 2025</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Designed end-to-end RAG pipelines with LangChain and Apache Airflow to evaluate and deploy LLMs for internal knowledge retrieval use cases</li>
+                        <li>Integrated FAISS and Weaviate into retrieval pipelines to enhance semantic search, improving response relevance and latency in production-grade QA systems used for internal knowledge management</li>
+                    </ul>
+                </div>
+
+                <!-- Nokia Intern -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Machine Learning Intern</h3>
+                            <p class="text-xl font-semibold">Nokia</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">May - Aug 2024</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Developed TensorFlow models for cloud network analytics; performed feature engineering, hyperparameter tuning, and pipeline optimization, improving performance by 20%</li>
+                        <li>Built Dockerized, Kubernetes-orchestrated microservices to source, validate, and register highly perofrming LLMs from HuggingFace into Nokia's MLFlow based model registry</li>
+                    </ul>
+                </div>
+
+                <!-- Cisco ML -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Machine Learning Intern</h3>
+                            <p class="text-xl font-semibold">Cisco</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Sep - Dec 2023</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Developed a predictive ML model leveraging SVMs and k-fold cross-validation - classify support ticket urgency, ensuring robust performance at 85% accuracy and cutting resolution times by 30%</li>
+                        <li>Automated data preprocessing and feature engineering workflows using Python, accelerating model development and reducing manual overhead</li>
+                        <li>Built an API integrating ChromaDB and LLMs - convert natural language into structured Elasticsearch queries, adopted by 5+ Cisco engineering teams</li>
+                    </ul>
+                </div>
+
+                <!-- Cisco Data Eng -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Data Engineering Intern</h3>
+                            <p class="text-xl font-semibold">Cisco</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">May - Aug 2023</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Designed and maintained ETL pipelines using Apache Airflow and Python - ingest, transform, and load data from internal APIs and cloud storage into a centralized data warehouse (Snowflake)</li>
+                        <li>Optimized Spark batch jobs, cutting execution time by 40% and enabling faster downstream reporting</li>
+                        <li>Built CI/CD workflows using GitLab for automated testing and deployment of data pipelines, improving deployment reliability across environments</li>
+                    </ul>
+                </div>
+
+                <!-- TA -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">Linear Algebra II Teaching Assistant</h3>
+                            <p class="text-xl font-semibold">Carleton University</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Jan - Apr 2023</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Delivered lectures and tutorials - reinforce key mathematical concepts, enhancing students' understanding of abstract data transformations relevant - data science and machine learning</li>
+                    </ul>
+                </div>
+
+                <!-- STEM Outreach Instructor -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">STEM Outreach Instructor</h3>
+                            <p class="text-xl font-semibold">Actua</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Sep - Dec 2022</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Traveled across the city teaching underprivileged kids about CAD software, block coding, and other topics</li>
+                        <li>Conducted a weekly Arduino programming seminar for high school students interested in engineering, providing hands-on experience with micro-controller programming, project-based learning, and collaborative problem-solving</li>
+                    </ul>
+                </div>
+
+                <!-- STEM Counsellor -->
+                <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600">STEM Counsellor</h3>
+                            <p class="text-xl font-semibold">Virtual Ventures | Carleton University</p>
+                            <p class="text-gray-600">Ottawa, ON</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">May - Aug 2022</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Developed and delivered a diverse range of STEM curriculum, capturing the interest and engagement of students</li>
+                        <li>Effectively managed a limited budget - resourcefully source materials, thereby reducing registration costs</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Scribble -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">Scribble - Graffiti in AR</h3>
+                        <a href="https://github.com/SaiPaladugu/UofTHacks2025" class="text-gray-600 hover:text-blue-600">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="mb-4">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">🏆 Winner - UofTHacks 12 2025</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Augmented Reality, zk-Proofs, Cohere, React, NextJS</p>
+                    <p class="text-gray-700">Leveraged vector embeddings and similarity search to personalize geotagged AR scribbles; used zk-proofs for secure location-based access control</p>
+                </div>
+
+                <!-- MLB Betting -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-4">MLB Positive EV Betting Algorithm</h3>
+                    <p class="text-gray-600 mb-4">Python, statsmodels, XGBoost, Poisson Regression, SQL</p>
+                    <p class="text-gray-700">Engineered a machine learning model using Poisson regression and gradient boosting to identify profitable pitcher strikeout props in MLB, achieving consistent edges that passively makes me around $500 a month</p>
+                </div>
+
+                <!-- Brain Tumor Detection -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">Brain Tumor Detection</h3>
+                        <a href="https://github.com/SaiPaladugu/tumor-detection" class="text-gray-600 hover:text-blue-600">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 mb-4">YOLOv8, Computer Vision, Medical AI, Jupyter Notebook</p>
+                    <p class="text-gray-700">Brain Tumor Detection using YOLOv8 on MRI Scans - advanced computer vision application for medical diagnosis using object detection</p>
+                </div>
+
+                <!-- MoodWave -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">MoodWave</h3>
+                        <div class="flex gap-2">
+                            <a href="https://github.com/SaiPaladugu/moodWave" class="text-gray-600 hover:text-blue-600">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://mood-wave.vercel.app/" class="text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-external-link-alt text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Spotify Web API, OpenAI GPT, Angular, Node.js, TypeScript</p>
+                    <p class="text-gray-700">AI mood-based Spotify playlist generator that uses sentiment analysis to create personalized music experiences based on user emotions</p>
+                </div>
+
+                <!-- GeoClone -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">GeoClone</h3>
+                        <div class="flex gap-2">
+                            <a href="https://github.com/SaiPaladugu/geoclone" class="text-gray-600 hover:text-blue-600">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://geoclone.vercel.app/" class="text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-external-link-alt text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Angular, Google Maps & Street View API, TypeScript</p>
+                    <p class="text-gray-700">A free alternative to Geoguessr, hosted and playable; Averaging over 50 monthly users</p>
+                </div>
+
+                <!-- GeoguessrAI -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">GeoguessrAI</h3>
+                        <a href="https://github.com/SaiPaladugu/GeoguessrAI" class="text-gray-600 hover:text-blue-600">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 mb-4">Python, Computer Vision, AI, Geolocation</p>
+                    <p class="text-gray-700">AI-powered geolocation system that can predict locations from images using advanced computer vision and machine learning techniques</p>
+                </div>
+
+                <!-- 2048 RL Agent -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">2048 RL Agent</h3>
+                        <a href="https://github.com/SaiPaladugu/2048_DeepQ" class="text-gray-600 hover:text-blue-600">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 mb-4">Python, PyTorch, Reinforcement Learning, Deep Q-Learning</p>
+                    <p class="text-gray-700">Developed a Deep Q-Learning agent using PyTorch that autonomously learns and optimizes strategies - achieve high scores in a 2048 game environment</p>
+                </div>
+
+                <!-- Therien Ottawa South -->
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="text-2xl font-bold text-blue-600">Therien Ottawa South</h3>
+                        <div class="flex gap-2">
+                            <a href="https://github.com/SaiPaladugu/TherienOttawaSouth" class="text-gray-600 hover:text-blue-600">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://therienottawasouth.vercel.app/" class="text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-external-link-alt text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">HTML, CSS, JavaScript, SCSS, Responsive Web Design</p>
+                    <p class="text-gray-700">Developed and launched a responsive website for the Therien Ottawa South martial arts club in exchange for a free lifetime membership</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Education</h2>
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- University -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                        <div>
+                            <h3 class="text-3xl font-bold text-blue-600 mb-2">Carleton University</h3>
+                            <p class="text-xl font-semibold mb-2">Bachelor of Computer Science (Honours)</p>
+                            <p class="text-lg text-gray-600 mb-2">Minor in Mathematics</p>
+                            <p class="text-sm text-gray-500 mb-4">Sep 2021 - Apr 2026</p>
+                            <div class="flex items-center gap-4">
+                                <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold">GPA: 4.0</span>
+                                <span class="text-gray-600">Expected: April 2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- International Baccalaureate -->
+                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+                        <div>
+                            <h3 class="text-3xl font-bold text-slate-600 mb-2">Colonel By Secondary School</h3>
+                            <p class="text-xl font-semibold mb-2">International Baccalaureate Diploma</p>
+                            <p class="text-lg text-gray-600 mb-2">International Baccalaureate Program</p>
+                            <p class="text-sm text-gray-500 mb-4">Sep 2018 - Jun 2021</p>
+                            <div class="flex items-center gap-4">
+                                <span class="bg-slate-100 text-slate-800 px-4 py-2 rounded-full font-semibold">IB Diploma</span>
+                                <span class="text-gray-600">Graduated: June 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Programming Languages -->
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4">Programming Languages</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">R</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">C++</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">SQL</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Bash</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Scala</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">HTML</span>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">CSS</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-green-600 mb-4">Frameworks & Libraries</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Scikit-learn</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Keras</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">OpenCV</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Dask</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Pandas</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">NumPy</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Matplotlib</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Angular</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-purple-600 mb-4">Databases</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">MySQL</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Elasticsearch</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">GraphDB</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Chroma</span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Pinecone</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-orange-600 mb-4">Tools</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">MLFlow</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Kubernetes</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Airflow</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">AWS</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Git</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Kafka</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Argo Workflows</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Unix</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Cloud Computing</span>
+                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Azure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteering Section -->
+    <section id="volunteering" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">Volunteering</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-green-600">Mentor</h3>
+                            <p class="text-xl font-semibold">Technovation Girls</p>
+                            <p class="text-gray-600">Education</p>
+                        </div>
+                        <span class="text-gray-500 mt-2 md:mt-0">Jan - Apr 2023</span>
+                    </div>
+                    <ul class="bullet-list text-gray-700">
+                        <li>Mentored a team that became global semifinalists, fostering skills in innovation and teamwork</li>
+                        <li>Guided young women in developing entrepreneurial skills and technological solutions for real-world problems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold mb-4">Let's Connect</h3>
+            <p class="text-gray-400 mb-8">I'm always open - discussing new opportunities and interesting projects.</p>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="https://github.com/SaiPaladugu" class="hover:text-blue-400 transition-colors">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/saipaladugu" class="hover:text-blue-400 transition-colors">
+                    <i class="fab fa-linkedin text-2xl"></i>
+                </a>
+                <a href="mailto:Saichandan03@gmail.com" class="hover:text-blue-400 transition-colors">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+            </div>
+            <p class="text-gray-500">© 2025 Sai Paladugu. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
