@@ -75,20 +75,10 @@ const experiences = [
     title: "Machine Learning Intern",
     company: "Cisco",
     location: "Ottawa, ON",
-    period: "Sep – Dec 2023",
+    period: "May 2023 – Dec 2023",
     bullets: [
-      "Developed a classification service using Scikit-learn that integrates via the Jira REST API to automatically assign ticket urgency, reducing resolution times by 30% with 85% accuracy",
-      "Built an API integrating ChromaDB and an LLM to convert natural language into structured Elasticsearch queries, adopted by 10+ Cisco engineering teams",
-    ],
-  },
-  {
-    title: "Data Engineering Intern",
-    company: "Cisco",
-    location: "Ottawa, ON",
-    period: "May – Aug 2023",
-    bullets: [
-      "Designed and maintained ETL pipelines using Apache Airflow and Python to ingest, transform, and load data from internal APIs and cloud storage into a centralized data warehouse (Snowflake)",
-      "Optimized Spark batch jobs, cutting execution time by 40% and enabling faster downstream reporting",
+      "Built an API integrating ChromaDB and an in-house LLM to convert natural language into structured Elasticsearch queries, adopted by 10+ Cisco engineering teams",
+      "Designed and maintained ETL pipelines using Apache Airflow to ingest, transform, and load 5TB+ of data from internal APIs and cloud storage into a centralized Snowflake warehouse",
     ],
   },
 ];
