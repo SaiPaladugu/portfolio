@@ -29,7 +29,10 @@ const experiences = [
     company: "Shopify",
     location: "Toronto, ON",
     period: "Jan 2026 – Apr 2026",
-    bullets: ["ML Intern on the ads engine team"],
+    bullets: [
+      "Architected an E2E ML pipeline using XGBoost, dbt, and Airflow to predict conversion value for real-time ad auctions, increasing bid efficiency by 15% and generating $15M yearly in incremental revenue",
+      "Engineered an online Multi-Armed Bandit (Thompson Sampling) framework for ad creative selection, solving the cold-start problem and boosting aggregate click-through rate by 25%",
+    ],
   },
   {
     title: "Machine Learning Research Intern",
@@ -47,28 +50,18 @@ const experiences = [
     location: "Toronto, ON",
     period: "May 2025 – Aug 2025",
     bullets: [
-      "Co-developing multimodal foundation models with imaging and omics data for phenotypic screening and drug target discovery; contributing to model architecture design and inference optimization",
-      "Applied batch effect correction and feature normalization to harmonize omics datasets across experiments, improving generalization in downstream model evaluation",
-    ],
-  },
-  {
-    title: "Machine Learning Operations Engineer",
-    company: "Nokia",
-    location: "Remote · Part-Time",
-    period: "Sep 2024 – Apr 2025",
-    bullets: [
-      "Engineered a Model Context Protocol (MCP) microservice to automate and standardize the retrieval of proprietary data from an internal LLM store for domain specific model training and fine-tuning",
-      "Designed end-to-end RAG pipelines with LangChain and Apache Airflow to evaluate and deploy LLMs for internal knowledge retrieval use cases",
+      "Developed multi-modal foundation models fusing computer vision and high-dimensional tabular data; optimized transformer attention mechanisms to increase inference throughput by 4x",
+      "Implemented domain adaptation and robust feature normalization techniques to handle distribution shifts across heterogeneous datasets, boosting out-of-distribution accuracy by 12%",
     ],
   },
   {
     title: "Machine Learning Operations Intern",
     company: "Nokia",
     location: "Ottawa, ON",
-    period: "May – Aug 2024",
+    period: "May 2024 – Apr 2025",
     bullets: [
-      "Built Dockerized, Kubernetes-orchestrated microservices to source, validate, and register highly performing LLMs from HuggingFace into Nokia's MLFlow based model registry",
-      "Established a CI/CD pipeline using GitLab and Terraform to automate the testing and validation of NLP models, ensuring robust performance for cloud network anomaly detection",
+      "Engineered a MCP microservice to standardize the retrieval of proprietary data from an internal LLM store, reducing data preparation latency by 60% for domain specific training",
+      "Built large-scale, Dockerized, Kubernetes-orchestrated microservices to source, validate, and register 100+ LLMs from HuggingFace into Nokia's MLFlow based model registry",
     ],
   },
   {
