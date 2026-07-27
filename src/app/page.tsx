@@ -1,27 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
-import { BackgroundPaths } from "@/components/ui/background-paths";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  ChevronDown,
-  MapPin,
-  Calendar,
-  Award,
-  BookOpen,
-  Code2,
-  BrainCircuit,
-  Cloud,
-  Database,
-  Container,
-  Heart,
-} from "lucide-react";
+import { SilkAurora } from "@/components/ui/silk-aurora";
+import { ArrowUpRight, Award, Github, Linkedin, Mail } from "lucide-react";
 
-// --- Data ---
+// --- Content ---
 
 const experiences = [
   {
@@ -163,21 +147,13 @@ const projects = [
   },
 ];
 
-const skillCategories = [
+const skillGroups = [
   {
     title: "Programming Languages",
-    icon: Code2,
-    color: "text-blue-600",
-    bgColor: "bg-blue-50",
-    tagColor: "bg-blue-100 text-blue-800",
     skills: ["Python", "R", "Java", "C++", "SQL", "JavaScript", "Bash", "Scala"],
   },
   {
     title: "ML & Data Science",
-    icon: BrainCircuit,
-    color: "text-emerald-600",
-    bgColor: "bg-emerald-50",
-    tagColor: "bg-emerald-100 text-emerald-800",
     skills: [
       "PyTorch",
       "TensorFlow",
@@ -192,10 +168,6 @@ const skillCategories = [
   },
   {
     title: "MLOps & DevOps",
-    icon: Container,
-    color: "text-violet-600",
-    bgColor: "bg-violet-50",
-    tagColor: "bg-violet-100 text-violet-800",
     skills: [
       "Docker",
       "Kubernetes",
@@ -213,90 +185,114 @@ const skillCategories = [
   },
   {
     title: "Cloud & API",
-    icon: Cloud,
-    color: "text-orange-600",
-    bgColor: "bg-orange-50",
-    tagColor: "bg-orange-100 text-orange-800",
     skills: ["AWS", "S3", "EC2", "SageMaker", "EKS", "Kafka", "FastAPI", "Flask"],
   },
   {
     title: "Databases & Data Stores",
-    icon: Database,
-    color: "text-indigo-600",
-    bgColor: "bg-indigo-50",
-    tagColor: "bg-indigo-100 text-indigo-800",
-    skills: [
-      "MySQL",
-      "MongoDB",
-      "Elasticsearch",
-      "Pinecone",
-      "ChromaDB",
-    ],
+    skills: ["MySQL", "MongoDB", "Elasticsearch", "Pinecone", "ChromaDB"],
   },
 ];
 
-// --- Animation variants ---
+const honours = [
+  "Summa Cum Laude",
+  "Harry S. Southam Scholarship",
+  "Dale L. Sheehan Award",
+];
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" as const },
-  }),
-};
+const socials = [
+  { href: "https://github.com/SaiPaladugu", label: "GitHub", icon: Github },
+  { href: "https://linkedin.com/in/saipaladugu", label: "LinkedIn", icon: Linkedin },
+  { href: "mailto:saichandan03@gmail.com", label: "Email", icon: Mail },
+];
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-};
+// --- Motion ---
 
-const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
+const fadeIn = {
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   },
 };
 
-// --- Section Component ---
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
 
-function Section({
-  id,
-  title,
-  icon: Icon,
+function Reveal({
   children,
-  className = "",
+  className,
 }: {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (
-    <section id={id} className={`py-24 ${className}`}>
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUp}
-          custom={0}
-          className="flex items-center justify-center gap-3 mb-16"
-        >
-          <Icon className="w-8 h-8 text-neutral-400" />
-          <h2 className="text-4xl font-bold tracking-tight text-neutral-900">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={fadeIn}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// --- Building blocks ---
+
+function Section({
+  id,
+  index,
+  title,
+  children,
+}: {
+  id: string;
+  index: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section id={id} className="border-t border-white/10">
+      <div className="mx-auto w-full max-w-[1240px] px-6 py-24 md:px-10 md:py-28">
+        <Reveal className="mb-14 flex items-baseline gap-4">
+          <span className="font-mono text-xs text-white/30">{index}</span>
+          <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-white/50">
             {title}
           </h2>
-        </motion.div>
+        </Reveal>
         {children}
       </div>
     </section>
+  );
+}
+
+function Bullet({ children }: { children: ReactNode }) {
+  return (
+    <li className="relative pl-5 text-[15px] leading-relaxed text-white/65">
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-[0.7em] h-px w-2.5 bg-white/25"
+      />
+      {children}
+    </li>
+  );
+}
+
+function EntryRow({
+  meta,
+  children,
+}: {
+  meta: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <Reveal className="grid gap-3 py-10 first:pt-0 last:pb-0 md:grid-cols-[240px_1fr] md:gap-10">
+      <div className="font-mono text-xs leading-6 text-white/40">{meta}</div>
+      <div>{children}</div>
+    </Reveal>
   );
 }
 
@@ -312,64 +308,56 @@ function Navbar() {
   }, []);
 
   const links = [
-    { href: "#home", label: "Home" },
     { href: "#experience", label: "Experience" },
     { href: "#projects", label: "Projects" },
     { href: "#education", label: "Education" },
     { href: "#skills", label: "Skills" },
+    { href: "#contact", label: "Contact" },
   ];
 
   return (
     <motion.nav
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -64, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-neutral-200/50 shadow-sm"
-          : "bg-transparent border-b border-transparent"
+          ? "border-b border-white/10 bg-[#050507]/70 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
-        <div className="flex justify-between items-center">
-          <a href="#home" className="text-xl font-bold tracking-tight text-neutral-900">
-            SP
-          </a>
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
+      <div className="mx-auto flex w-full max-w-[1240px] items-center justify-between px-6 py-4 md:px-10">
+        <a
+          href="#home"
+          className="font-mono text-sm font-semibold tracking-[0.2em] text-white"
+        >
+          SP
+        </a>
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
             <a
-              href="https://github.com/SaiPaladugu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors"
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/50 transition-colors hover:text-white"
             >
-              <Github className="w-5 h-5" />
+              {link.label}
             </a>
+          ))}
+        </div>
+        <div className="flex items-center gap-1">
+          {socials.map(({ href, label, icon: Icon }) => (
             <a
-              href="https://linkedin.com/in/saipaladugu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors"
+              key={label}
+              href={href}
+              aria-label={label}
+              {...(href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="p-2 text-white/50 transition-colors hover:text-white"
             >
-              <Linkedin className="w-5 h-5" />
+              <Icon className="h-[18px] w-[18px]" />
             </a>
-            <a
-              href="mailto:saichandan03@gmail.com"
-              className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
+          ))}
         </div>
       </div>
     </motion.nav>
@@ -380,138 +368,104 @@ function Navbar() {
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <main className="bg-[#050507] text-white">
       <Navbar />
 
-      {/* Hero with BackgroundPaths */}
-      <div id="home">
-        <BackgroundPaths
-          title="Sai Paladugu"
-          subtitle="Machine Learning Engineer @ Shopify"
-          description="Passionate about machine learning for drug discovery, predictive modeling, and computer vision. B.CS Honours with a Math minor from Carleton University."
+      {/* Hero */}
+      <SilkAurora
+        id="home"
+        title="Sai Paladugu"
+        subtitle="Machine Learning Engineer · Shopify"
+        description="Passionate about machine learning for drug discovery, predictive modeling, and computer vision. B.CS Honours with a Math minor from Carleton University."
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
+          className="flex flex-wrap gap-3"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
+          <a
+            href="https://github.com/SaiPaladugu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-colors hover:bg-white/85"
           >
-            <a
-              href="https://github.com/SaiPaladugu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-neutral-900 text-white text-sm font-medium 
-                hover:bg-neutral-800 transition-all hover:scale-105 hover:shadow-lg"
-            >
-              <Github className="w-4 h-4" />
-              GitHub
-            </a>
-            <a
-              href="https://linkedin.com/in/saipaladugu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 text-white text-sm font-medium 
-                hover:bg-blue-700 transition-all hover:scale-105 hover:shadow-lg"
-            >
-              <Linkedin className="w-4 h-4" />
-              LinkedIn
-            </a>
-            <a
-              href="mailto:saichandan03@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 text-sm font-medium 
-                hover:border-neutral-400 hover:bg-neutral-50 transition-all hover:scale-105"
-            >
-              <Mail className="w-4 h-4" />
-              Email
-            </a>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
+            <Github className="h-4 w-4" />
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/saipaladugu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
           >
-            <a href="#experience" className="inline-block">
-              <ChevronDown className="w-6 h-6 text-neutral-400 animate-bounce" />
-            </a>
-          </motion.div>
-        </BackgroundPaths>
-      </div>
+            <Linkedin className="h-4 w-4" />
+            LinkedIn
+          </a>
+          <a
+            href="mailto:saichandan03@gmail.com"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
+          >
+            <Mail className="h-4 w-4" />
+            Email
+          </a>
+        </motion.div>
+      </SilkAurora>
 
       {/* Experience */}
-      <Section id="experience" title="Experience" icon={BookOpen}>
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={fadeInUp}
-              custom={i}
-              className="group relative bg-neutral-50 rounded-2xl p-8 hover:bg-white hover:shadow-xl 
-                transition-all duration-300 border border-transparent hover:border-neutral-200"
+      <Section id="experience" index="01" title="Experience">
+        <div className="divide-y divide-white/10">
+          {experiences.map((exp) => (
+            <EntryRow
+              key={`${exp.company}-${exp.period}`}
+              meta={
+                <>
+                  <p>{exp.period}</p>
+                  <p>{exp.location}</p>
+                </>
+              }
             >
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900 group-hover:text-blue-600 transition-colors">
-                    {exp.title}
-                  </h3>
-                  <p className="text-lg font-semibold text-neutral-700">{exp.company}</p>
-                  <div className="flex items-center gap-2 text-neutral-500 text-sm mt-1">
-                    <MapPin className="w-3.5 h-3.5" />
-                    {exp.location}
-                  </div>
-                </div>
-                <span className="flex items-center gap-2 text-sm text-neutral-400 mt-2 md:mt-0 font-medium">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {exp.period}
-                </span>
-              </div>
-              <ul className="space-y-2 mt-4">
-                {exp.bullets.map((bullet, j) => (
-                  <li
-                    key={j}
-                    className="relative pl-5 text-neutral-600 leading-relaxed text-[15px]"
-                  >
-                    <span className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-neutral-300" />
-                    {bullet}
-                  </li>
+              <h3 className="text-lg font-semibold text-white">{exp.title}</h3>
+              <p className="mt-0.5 text-sm text-white/50">{exp.company}</p>
+              <ul className="mt-4 space-y-2.5">
+                {exp.bullets.map((bullet) => (
+                  <Bullet key={bullet}>{bullet}</Bullet>
                 ))}
               </ul>
-            </motion.div>
+            </EntryRow>
           ))}
         </div>
       </Section>
 
       {/* Projects */}
-      <Section id="projects" title="Projects" icon={Code2} className="bg-neutral-50">
+      <Section id="projects" index="02" title="Projects">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={stagger}
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.map((project, i) => (
-            <motion.div
-              key={i}
-              variants={staggerItem}
-              className="group bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 
-                border border-neutral-100 hover:border-neutral-200 flex flex-col"
+          {projects.map((project) => (
+            <motion.article
+              key={project.title}
+              variants={fadeIn}
+              className="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.04]"
             >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-bold text-neutral-900 group-hover:text-blue-600 transition-colors leading-snug">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#f4dfb8]">
                   {project.title}
                 </h3>
-                <div className="flex items-center gap-2 flex-shrink-0 ml-2">
+                <div className="flex shrink-0 items-center gap-1">
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-400 hover:text-neutral-900 transition-colors"
+                      aria-label={`${project.title} on GitHub`}
+                      className="p-1 text-white/40 transition-colors hover:text-white"
                     >
-                      <Github className="w-4 h-4" />
+                      <Github className="h-4 w-4" />
                     </a>
                   )}
                   {project.live && (
@@ -519,210 +473,153 @@ export default function Home() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-neutral-400 hover:text-blue-600 transition-colors"
+                      aria-label={`${project.title} — live`}
+                      className="p-1 text-white/40 transition-colors hover:text-white"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ArrowUpRight className="h-4 w-4" />
                     </a>
                   )}
                 </div>
               </div>
               {project.award && (
-                <div className="mb-3">
-                  <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold border border-amber-200">
-                    <Award className="w-3 h-3" />
-                    {project.award}
-                  </span>
-                </div>
+                <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-[#f4dfb8]/25 bg-[#f4dfb8]/10 px-3 py-1 text-xs font-medium text-[#f4dfb8]">
+                  <Award className="h-3 w-3" />
+                  {project.award}
+                </span>
               )}
-              <p className="text-xs text-neutral-400 mb-3 font-medium">{project.tech}</p>
-              <p className="text-sm text-neutral-600 leading-relaxed flex-grow">
+              <p className="mt-3 font-mono text-[11px] leading-relaxed text-white/35">
+                {project.tech}
+              </p>
+              <p className="mt-2 flex-grow text-sm leading-relaxed text-white/60">
                 {project.description}
               </p>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
       </Section>
 
       {/* Education */}
-      <Section id="education" title="Education" icon={BookOpen}>
-        <div className="max-w-4xl mx-auto space-y-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            custom={0}
-            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 via-indigo-50 to-violet-50 p-8 border border-blue-100"
-          >
-            <div className="relative z-10">
-              <h3 className="text-3xl font-bold text-neutral-900 mb-2">
-                Carleton University
-              </h3>
-              <p className="text-lg font-semibold text-neutral-700 mb-1">
-                Bachelor of Computer Science (Honours), Minor in Math
-              </p>
-              <p className="text-sm text-neutral-500 mb-4">Graduated April 2026</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-bold">
-                  GPA: 4.0
+      <Section id="education" index="03" title="Education">
+        <div className="divide-y divide-white/10">
+          <EntryRow meta={<p>Graduated April 2026</p>}>
+            <h3 className="text-lg font-semibold text-white">
+              Carleton University
+            </h3>
+            <p className="mt-0.5 text-sm text-white/50">
+              Bachelor of Computer Science (Honours), Minor in Math
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <span className="rounded-full border border-[#f4dfb8]/25 bg-[#f4dfb8]/10 px-3 py-1 text-xs font-medium text-[#f4dfb8]">
+                GPA 4.0 / 4.0
+              </span>
+              {honours.map((honour) => (
+                <span
+                  key={honour}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-white/60"
+                >
+                  <Award className="h-3 w-3 text-white/40" />
+                  {honour}
                 </span>
-                {[
-                  "Summa Cum Laude",
-                  "Harry S. Southam Scholarship",
-                  "Dale L. Sheehan Award",
-                ].map((honour) => (
-                  <span
-                    key={honour}
-                    className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full text-sm font-semibold border border-amber-200"
-                  >
-                    <Award className="w-3.5 h-3.5" />
-                    {honour}
-                  </span>
-                ))}
-              </div>
+              ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            custom={1}
-            className="rounded-2xl bg-neutral-50 p-8 border border-neutral-200"
-          >
-            <h3 className="text-2xl font-bold text-neutral-900 mb-2">
+          </EntryRow>
+          <EntryRow meta={<p>Sep 2018 – Jun 2021</p>}>
+            <h3 className="text-lg font-semibold text-white">
               Colonel By Secondary School
             </h3>
-            <p className="text-lg font-semibold text-neutral-700 mb-1">
+            <p className="mt-0.5 text-sm text-white/50">
               International Baccalaureate Diploma
             </p>
-            <p className="text-sm text-neutral-500 mb-4">Sep 2018 – Jun 2021</p>
-            <span className="inline-block bg-slate-100 text-slate-700 px-4 py-1.5 rounded-full text-sm font-semibold">
-              IB Diploma
-            </span>
-          </motion.div>
+          </EntryRow>
         </div>
       </Section>
 
       {/* Skills */}
-      <Section id="skills" title="Skills" icon={BrainCircuit} className="bg-neutral-50">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {skillCategories.map((category) => (
-            <motion.div
-              key={category.title}
-              variants={staggerItem}
-              className="bg-white rounded-2xl p-6 border border-neutral-100 hover:shadow-lg transition-all duration-300"
+      <Section id="skills" index="04" title="Skills">
+        <div className="divide-y divide-white/10">
+          {skillGroups.map((group) => (
+            <Reveal
+              key={group.title}
+              className="grid gap-3 py-8 first:pt-0 last:pb-0 md:grid-cols-[240px_1fr] md:gap-10"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2 rounded-lg ${category.bgColor}`}>
-                  <category.icon className={`w-5 h-5 ${category.color}`} />
-                </div>
-                <h3 className="text-lg font-bold text-neutral-900">{category.title}</h3>
-              </div>
+              <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/50 md:pt-1.5">
+                {group.title}
+              </h3>
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
+                {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className={`${category.tagColor} px-3 py-1 rounded-full text-xs font-medium`}
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60"
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
-      </Section>
-
-      {/* Volunteering */}
-      <Section id="volunteering" title="Volunteering" icon={Heart}>
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            custom={0}
-            className="bg-neutral-50 rounded-2xl p-8 border border-neutral-200 hover:shadow-lg transition-all duration-300"
-          >
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-              <div>
-                <h3 className="text-xl font-bold text-neutral-900">Mentor</h3>
-                <p className="text-lg font-semibold text-neutral-700">Technovation Girls</p>
-                <div className="flex items-center gap-2 text-neutral-500 text-sm mt-1">
-                  <MapPin className="w-3.5 h-3.5" />
-                  Education
-                </div>
-              </div>
-              <span className="flex items-center gap-2 text-sm text-neutral-400 mt-2 md:mt-0 font-medium">
-                <Calendar className="w-3.5 h-3.5" />
-                Jan – Apr 2023
-              </span>
-            </div>
-            <ul className="space-y-2 mt-4">
-              <li className="relative pl-5 text-neutral-600 leading-relaxed text-[15px]">
-                <span className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-neutral-300" />
-                Mentored a team that became global semifinalists, fostering skills in innovation and teamwork
-              </li>
-              <li className="relative pl-5 text-neutral-600 leading-relaxed text-[15px]">
-                <span className="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-neutral-300" />
-                Guided young women in developing entrepreneurial skills and technological solutions for real-world problems
-              </li>
-            </ul>
-          </motion.div>
         </div>
       </Section>
 
-      {/* Footer */}
-      <footer className="bg-neutral-950 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            custom={0}
-          >
-            <h3 className="text-3xl font-bold mb-4 tracking-tight">Let&apos;s Connect</h3>
-            <p className="text-neutral-400 mb-8 max-w-md mx-auto">
-              Always open to discussing new opportunities, interesting projects, and
-              collaborations.
+      {/* Volunteering */}
+      <Section id="volunteering" index="05" title="Volunteering">
+        <EntryRow meta={<p>Jan – Apr 2023</p>}>
+          <h3 className="text-lg font-semibold text-white">Mentor</h3>
+          <p className="mt-0.5 text-sm text-white/50">Technovation Girls</p>
+          <ul className="mt-4 space-y-2.5">
+            <Bullet>
+              Mentored a team that became global semifinalists, fostering skills
+              in innovation and teamwork
+            </Bullet>
+            <Bullet>
+              Guided young women in developing entrepreneurial skills and
+              technological solutions for real-world problems
+            </Bullet>
+          </ul>
+        </EntryRow>
+      </Section>
+
+      {/* Contact / Footer */}
+      <footer id="contact" className="border-t border-white/10">
+        <div className="mx-auto w-full max-w-[1240px] px-6 py-24 md:px-10 md:py-28">
+          <Reveal>
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/50">
+              Contact
             </p>
-            <div className="flex justify-center gap-4 mb-12">
-              <a
-                href="https://github.com/SaiPaladugu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-all hover:scale-110"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com/in/saipaladugu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-all hover:scale-110"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:saichandan03@gmail.com"
-                className="p-3 rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-all hover:scale-110"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
+            <h2 className="mt-6 max-w-[640px] text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+              Let&apos;s connect.
+            </h2>
+            <p className="mt-5 max-w-[480px] text-base leading-relaxed text-white/60">
+              Always open to discussing new opportunities, interesting projects,
+              and collaborations.
+            </p>
+            <a
+              href="mailto:saichandan03@gmail.com"
+              className="mt-8 inline-flex items-center gap-2 text-lg text-white underline decoration-white/30 underline-offset-8 transition-colors hover:text-[#f4dfb8] hover:decoration-[#f4dfb8]/50"
+            >
+              saichandan03@gmail.com
+              <ArrowUpRight className="h-5 w-5" />
+            </a>
+          </Reveal>
+          <div className="mt-20 flex flex-col justify-between gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center">
+            <p className="font-mono text-xs text-white/30">
+              © {new Date().getFullYear()} Sai Paladugu · Toronto, ON
+            </p>
+            <div className="flex items-center gap-1">
+              {socials.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  {...(href.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="p-2 text-white/40 transition-colors hover:text-white"
+                >
+                  <Icon className="h-[18px] w-[18px]" />
+                </a>
+              ))}
             </div>
-            <p className="text-neutral-600 text-sm">
-              &copy; {new Date().getFullYear()} Sai Paladugu
-            </p>
-          </motion.div>
+          </div>
         </div>
       </footer>
     </main>

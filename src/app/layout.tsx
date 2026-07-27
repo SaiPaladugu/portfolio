@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Sai Paladugu - Portfolio",
   description:
     "Machine Learning Engineer II at Shopify. Passionate about ML for drug discovery, predictive modeling, and computer vision.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050507",
 };
 
 export default function RootLayout({
