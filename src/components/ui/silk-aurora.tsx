@@ -148,6 +148,12 @@ export interface SilkAuroraProps extends React.HTMLAttributes<HTMLDivElement> {
   vignette?: number;
   mouseInfluence?: number;
   interactive?: boolean;
+  /**
+   * Track the pointer on the whole window instead of the component itself.
+   * Needed when the aurora is used as a fixed background with content
+   * scrolling above it — the container never receives pointer events then.
+   */
+  globalPointer?: boolean;
   children?: React.ReactNode;
 }
 
@@ -168,6 +174,7 @@ export function SilkAurora({
   vignette = 1,
   mouseInfluence = 1,
   interactive = true,
+  globalPointer = false,
   className,
   children,
   style,
@@ -191,6 +198,7 @@ export function SilkAurora({
       vignette,
       mouseInfluence,
       interactive,
+      globalPointer,
     }),
     [
       baseColor,
@@ -203,6 +211,7 @@ export function SilkAurora({
       vignette,
       mouseInfluence,
       interactive,
+      globalPointer,
     ],
   );
 
@@ -235,16 +244,21 @@ export function SilkAurora({
       targetMouseRef.current = { x: 0.5, y: 0.5 };
     };
 
-    container.addEventListener("pointermove", handlePointerMove);
-    container.addEventListener("pointerleave", handlePointerLeave);
+    const moveTarget: EventTarget = settings.globalPointer ? window : container;
+    const leaveTarget: EventTarget = settings.globalPointer
+      ? document.documentElement
+      : container;
+
+    moveTarget.addEventListener("pointermove", handlePointerMove as EventListener);
+    leaveTarget.addEventListener("pointerleave", handlePointerLeave);
 
     try {
       const gl = canvas.getContext("webgl", { antialias: false, alpha: false });
       if (!gl) {
         setHasWebGLError(true);
         return () => {
-          container.removeEventListener("pointermove", handlePointerMove);
-          container.removeEventListener("pointerleave", handlePointerLeave);
+          moveTarget.removeEventListener("pointermove", handlePointerMove as EventListener);
+          leaveTarget.removeEventListener("pointerleave", handlePointerLeave);
         };
       }
 
@@ -388,8 +402,8 @@ export function SilkAurora({
       rafId = requestAnimationFrame(render);
 
       return () => {
-        container.removeEventListener("pointermove", handlePointerMove);
-        container.removeEventListener("pointerleave", handlePointerLeave);
+        moveTarget.removeEventListener("pointermove", handlePointerMove as EventListener);
+        leaveTarget.removeEventListener("pointerleave", handlePointerLeave);
         cancelAnimationFrame(rafId);
         resizeObserver.disconnect();
         gl.deleteBuffer(buffer);
@@ -400,8 +414,8 @@ export function SilkAurora({
     } catch {
       setHasWebGLError(true);
       return () => {
-        container.removeEventListener("pointermove", handlePointerMove);
-        container.removeEventListener("pointerleave", handlePointerLeave);
+        moveTarget.removeEventListener("pointermove", handlePointerMove as EventListener);
+        leaveTarget.removeEventListener("pointerleave", handlePointerLeave);
       };
     }
   }, [hasWebGLError, settings]);

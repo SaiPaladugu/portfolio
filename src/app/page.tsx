@@ -3,7 +3,14 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import { SilkAurora } from "@/components/ui/silk-aurora";
-import { ArrowUpRight, Award, Github, Linkedin, Mail } from "lucide-react";
+import {
+  ArrowUpRight,
+  Award,
+  ChevronDown,
+  Github,
+  Linkedin,
+  Mail,
+} from "lucide-react";
 
 // --- Content ---
 
@@ -368,49 +375,99 @@ function Navbar() {
 
 export default function Home() {
   return (
-    <main className="bg-[#050507] text-white">
+    <main className="relative text-white">
+      {/* Persistent aurora backdrop — fixed to the viewport, content scrolls over it */}
+      <SilkAurora
+        aria-hidden="true"
+        globalPointer
+        className="fixed inset-0 -z-10"
+      />
+
       <Navbar />
 
       {/* Hero */}
-      <SilkAurora
+      <header
         id="home"
-        title="Sai Paladugu"
-        subtitle="Machine Learning Engineer · Shopify"
-        description="Passionate about machine learning for drug discovery, predictive modeling, and computer vision. B.CS Honours with a Math minor from Carleton University."
+        className="relative flex min-h-svh w-full items-center"
+        style={{ containerType: "inline-size" }}
       >
+        <div className="mx-auto w-full max-w-[1240px] px-6 py-20 md:px-10 md:py-28">
+          <div className="max-w-[760px]">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05, duration: 0.7, ease: "easeOut" }}
+              className="mb-5 text-xs font-medium uppercase tracking-[0.24em] text-white/50"
+            >
+              Machine Learning Engineer · Shopify
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.7, ease: "easeOut" }}
+              className="max-w-[820px] text-[13cqi] font-semibold leading-[0.86] tracking-normal text-white md:text-[8cqi] lg:text-[6.4cqi]"
+            >
+              Sai Paladugu
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7, ease: "easeOut" }}
+              className="mt-7 max-w-[620px] text-base leading-relaxed text-white/68 md:text-xl"
+            >
+              Passionate about machine learning for drug discovery, predictive
+              modeling, and computer vision. B.CS Honours with a Math minor from
+              Carleton University.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.7, ease: "easeOut" }}
+              className="mt-10 flex flex-wrap gap-3"
+            >
+              <a
+                href="https://github.com/SaiPaladugu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-colors hover:bg-white/85"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/saipaladugu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
+              >
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <a
+                href="mailto:saichandan03@gmail.com"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
+              >
+                <Mail className="h-4 w-4" />
+                Email
+              </a>
+            </motion.div>
+          </div>
+        </div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
-          className="flex flex-wrap gap-3"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <a
-            href="https://github.com/SaiPaladugu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-neutral-950 transition-colors hover:bg-white/85"
+            href="#experience"
+            aria-label="Scroll to experience"
+            className="text-white/40 transition-colors hover:text-white"
           >
-            <Github className="h-4 w-4" />
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/saipaladugu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
-          >
-            <Linkedin className="h-4 w-4" />
-            LinkedIn
-          </a>
-          <a
-            href="mailto:saichandan03@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
-          >
-            <Mail className="h-4 w-4" />
-            Email
+            <ChevronDown className="h-5 w-5 animate-bounce" />
           </a>
         </motion.div>
-      </SilkAurora>
+      </header>
 
       {/* Experience */}
       <Section id="experience" index="01" title="Experience">
@@ -450,7 +507,7 @@ export default function Home() {
             <motion.article
               key={project.title}
               variants={fadeIn}
-              className="group flex flex-col rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.04]"
+              className="group flex flex-col rounded-xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.06]"
             >
               <div className="flex items-start justify-between gap-3">
                 <h3 className="text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#f4dfb8]">
