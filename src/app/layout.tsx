@@ -17,6 +17,17 @@ export const metadata: Metadata = {
   title: "Sai Paladugu - Portfolio",
   description:
     "Machine Learning Engineer II at Shopify. Passionate about ML for drug discovery, predictive modeling, and computer vision.",
+  openGraph: {
+    title: "Sai Paladugu - Portfolio",
+    description:
+      "Machine Learning Engineer II at Shopify. Passionate about ML for drug discovery, predictive modeling, and computer vision.",
+    url: "/",
+    siteName: "Sai Paladugu",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {

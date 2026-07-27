@@ -7,6 +7,7 @@ import {
   ArrowUpRight,
   Award,
   ChevronDown,
+  FileDown,
   Github,
   Linkedin,
   Mail,
@@ -365,6 +366,14 @@ function Navbar() {
               <Icon className="h-[18px] w-[18px]" />
             </a>
           ))}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            className="ml-2 rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white"
+          >
+            Resume
+          </a>
         </div>
       </div>
     </motion.nav>
@@ -464,6 +473,15 @@ export default function Home() {
               >
                 <Mail className="h-4 w-4" />
                 Email
+              </a>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-medium text-white transition-colors hover:border-white/50 hover:bg-white/10"
+              >
+                <FileDown className="h-4 w-4" />
+                Resume
               </a>
             </motion.div>
           </div>
