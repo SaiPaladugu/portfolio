@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { SilkAurora } from "@/components/ui/silk-aurora";
 import {
   ArrowUpRight,
@@ -265,8 +265,8 @@ function Section({
     <section id={id} className="border-t border-white/10">
       <div className="mx-auto w-full max-w-[1240px] px-6 py-24 md:px-10 md:py-28">
         <Reveal className="mb-14 flex items-baseline gap-4">
-          <span className="font-mono text-xs text-white/30">{index}</span>
-          <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-white/50">
+          <span className="font-mono text-xs text-white/40">{index}</span>
+          <h2 className="text-xs font-medium uppercase tracking-[0.24em] text-white/60">
             {title}
           </h2>
         </Reveal>
@@ -278,10 +278,10 @@ function Section({
 
 function Bullet({ children }: { children: ReactNode }) {
   return (
-    <li className="relative pl-5 text-[15px] leading-relaxed text-white/65">
+    <li className="relative pl-5 text-[15px] leading-relaxed text-white/75">
       <span
         aria-hidden="true"
-        className="absolute left-0 top-[0.7em] h-px w-2.5 bg-white/25"
+        className="absolute left-0 top-[0.7em] h-px w-2.5 bg-white/30"
       />
       {children}
     </li>
@@ -297,7 +297,7 @@ function EntryRow({
 }) {
   return (
     <Reveal className="grid gap-3 py-10 first:pt-0 last:pb-0 md:grid-cols-[240px_1fr] md:gap-10">
-      <div className="font-mono text-xs leading-6 text-white/40">{meta}</div>
+      <div className="font-mono text-xs leading-6 text-white/50">{meta}</div>
       <div>{children}</div>
     </Reveal>
   );
@@ -345,7 +345,7 @@ function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-white/50 transition-colors hover:text-white"
+              className="text-sm text-white/60 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -374,6 +374,15 @@ function Navbar() {
 // --- Page ---
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement | null>(null);
+  // Dim the aurora as the hero scrolls away so text sections sit on a much
+  // darker backdrop; scrolling back to the top restores full vibrancy.
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const backdropDim = useTransform(scrollYProgress, [0, 1], [0, 0.55]);
+
   return (
     <main className="relative text-white">
       {/* Persistent aurora backdrop — fixed to the viewport, content scrolls over it */}
@@ -382,12 +391,18 @@ export default function Home() {
         globalPointer
         className="fixed inset-0 -z-10"
       />
+      <motion.div
+        aria-hidden="true"
+        style={{ opacity: backdropDim }}
+        className="pointer-events-none fixed inset-0 -z-10 bg-black"
+      />
 
       <Navbar />
 
       {/* Hero */}
       <header
         id="home"
+        ref={heroRef}
         className="relative flex min-h-svh w-full items-center"
         style={{ containerType: "inline-size" }}
       >
@@ -397,7 +412,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05, duration: 0.7, ease: "easeOut" }}
-              className="mb-5 text-xs font-medium uppercase tracking-[0.24em] text-white/50"
+              className="mb-5 text-xs font-medium uppercase tracking-[0.24em] text-white/60"
             >
               Machine Learning Engineer · Shopify
             </motion.p>
@@ -483,7 +498,7 @@ export default function Home() {
               }
             >
               <h3 className="text-lg font-semibold text-white">{exp.title}</h3>
-              <p className="mt-0.5 text-sm text-white/50">{exp.company}</p>
+              <p className="mt-0.5 text-sm text-white/60">{exp.company}</p>
               <ul className="mt-4 space-y-2.5">
                 {exp.bullets.map((bullet) => (
                   <Bullet key={bullet}>{bullet}</Bullet>
@@ -520,7 +535,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} on GitHub`}
-                      className="p-1 text-white/40 transition-colors hover:text-white"
+                      className="p-1 text-white/50 transition-colors hover:text-white"
                     >
                       <Github className="h-4 w-4" />
                     </a>
@@ -531,7 +546,7 @@ export default function Home() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${project.title} — live`}
-                      className="p-1 text-white/40 transition-colors hover:text-white"
+                      className="p-1 text-white/50 transition-colors hover:text-white"
                     >
                       <ArrowUpRight className="h-4 w-4" />
                     </a>
@@ -544,10 +559,10 @@ export default function Home() {
                   {project.award}
                 </span>
               )}
-              <p className="mt-3 font-mono text-[11px] leading-relaxed text-white/35">
+              <p className="mt-3 font-mono text-[11px] leading-relaxed text-white/45">
                 {project.tech}
               </p>
-              <p className="mt-2 flex-grow text-sm leading-relaxed text-white/60">
+              <p className="mt-2 flex-grow text-sm leading-relaxed text-white/70">
                 {project.description}
               </p>
             </motion.article>
@@ -562,7 +577,7 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-white">
               Carleton University
             </h3>
-            <p className="mt-0.5 text-sm text-white/50">
+            <p className="mt-0.5 text-sm text-white/60">
               Bachelor of Computer Science (Honours), Minor in Math
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -572,9 +587,9 @@ export default function Home() {
               {honours.map((honour) => (
                 <span
                   key={honour}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-white/60"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-white/70"
                 >
-                  <Award className="h-3 w-3 text-white/40" />
+                  <Award className="h-3 w-3 text-white/50" />
                   {honour}
                 </span>
               ))}
@@ -584,7 +599,7 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-white">
               Colonel By Secondary School
             </h3>
-            <p className="mt-0.5 text-sm text-white/50">
+            <p className="mt-0.5 text-sm text-white/60">
               International Baccalaureate Diploma
             </p>
           </EntryRow>
@@ -599,14 +614,14 @@ export default function Home() {
               key={group.title}
               className="grid gap-3 py-8 first:pt-0 last:pb-0 md:grid-cols-[240px_1fr] md:gap-10"
             >
-              <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/50 md:pt-1.5">
+              <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/60 md:pt-1.5">
                 {group.title}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60"
+                    className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/70"
                   >
                     {skill}
                   </span>
@@ -621,7 +636,7 @@ export default function Home() {
       <Section id="volunteering" index="05" title="Volunteering">
         <EntryRow meta={<p>Jan – Apr 2023</p>}>
           <h3 className="text-lg font-semibold text-white">Mentor</h3>
-          <p className="mt-0.5 text-sm text-white/50">Technovation Girls</p>
+          <p className="mt-0.5 text-sm text-white/60">Technovation Girls</p>
           <ul className="mt-4 space-y-2.5">
             <Bullet>
               Mentored a team that became global semifinalists, fostering skills
@@ -639,13 +654,13 @@ export default function Home() {
       <footer id="contact" className="border-t border-white/10">
         <div className="mx-auto w-full max-w-[1240px] px-6 py-24 md:px-10 md:py-28">
           <Reveal>
-            <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/50">
+            <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/60">
               Contact
             </p>
             <h2 className="mt-6 max-w-[640px] text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Let&apos;s connect.
             </h2>
-            <p className="mt-5 max-w-[480px] text-base leading-relaxed text-white/60">
+            <p className="mt-5 max-w-[480px] text-base leading-relaxed text-white/70">
               Always open to discussing new opportunities, interesting projects,
               and collaborations.
             </p>
@@ -658,7 +673,7 @@ export default function Home() {
             </a>
           </Reveal>
           <div className="mt-20 flex flex-col justify-between gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center">
-            <p className="font-mono text-xs text-white/30">
+            <p className="font-mono text-xs text-white/40">
               © {new Date().getFullYear()} Sai Paladugu · Toronto, ON
             </p>
             <div className="flex items-center gap-1">
@@ -670,7 +685,7 @@ export default function Home() {
                   {...(href.startsWith("http")
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="p-2 text-white/40 transition-colors hover:text-white"
+                  className="p-2 text-white/50 transition-colors hover:text-white"
                 >
                   <Icon className="h-[18px] w-[18px]" />
                 </a>
