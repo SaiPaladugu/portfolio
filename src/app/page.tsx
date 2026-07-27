@@ -25,19 +25,29 @@ import {
 
 const experiences = [
   {
+    title: "Machine Learning Engineer II",
+    company: "Shopify",
+    location: "Toronto, ON",
+    period: "May 2026 – Present",
+    bullets: [
+      "DRI for the ML side launch of Microsoft into Shopify's Autopilot",
+      "Own the cross-channel budget allocation model that distributes merchant spend across Meta, Shop, and Microsoft",
+    ],
+  },
+  {
     title: "Machine Learning Intern",
     company: "Shopify",
     location: "Toronto, ON",
     period: "Jan 2026 – Apr 2026",
     bullets: [
-      "Architected an E2E ML pipeline using XGBoost, dbt, and Airflow to predict conversion value for real-time ad auctions, increasing bid efficiency by 15% and generating $15M yearly in incremental revenue",
-      "Engineered an online Multi-Armed Bandit (Thompson Sampling) framework for ad creative selection, solving the cold-start problem and boosting aggregate click-through rate by 25%",
+      "Architected an end-to-end ML pipeline using XGBoost, dbt, and Airflow to predict conversion value for real-time ad auctions, generating a projected $5M in annualized incremental revenue",
+      "Engineered an online Multi-Armed Bandit (Thompson Sampling) framework for ad creative selection, mitigating the cold-start problem and boosting aggregate click-through rate by 25%",
     ],
   },
   {
     title: "Machine Learning Research Intern",
-    company: "Valence Labs",
-    location: "Mila AI Institute, QC",
+    company: "Valence Labs (Mila)",
+    location: "Montreal, QC",
     period: "Sep 2025 – Dec 2025",
     bullets: [
       "Designed active learning pipelines using uncertainty estimation to optimize data sampling efficiency, saving $40k in data acquisition costs for training in sparse-data regimes",
@@ -46,7 +56,7 @@ const experiences = [
   },
   {
     title: "Machine Learning Research Intern",
-    company: "Recursion",
+    company: "Recursion x NVIDIA",
     location: "Toronto, ON",
     period: "May 2025 – Aug 2025",
     bullets: [
@@ -60,8 +70,8 @@ const experiences = [
     location: "Ottawa, ON",
     period: "May 2024 – Apr 2025",
     bullets: [
-      "Engineered a MCP microservice to standardize the retrieval of proprietary data from an internal LLM store, reducing data preparation latency by 60% for domain specific training",
-      "Built large-scale, Dockerized, Kubernetes-orchestrated microservices to source, validate, and register 100+ LLMs from HuggingFace into Nokia's MLFlow based model registry",
+      "Engineered an MCP microservice to standardize retrieval of proprietary data from an internal training-data store, reducing data preparation latency by 60% for domain-specific LLM training",
+      "Built large-scale, Dockerized, Kubernetes-orchestrated microservices to source, validate, and register 100+ LLMs from Hugging Face into Nokia's MLflow-based model registry",
     ],
   },
   {
@@ -78,12 +88,20 @@ const experiences = [
 
 const projects = [
   {
-    title: "Scribble - Graffiti in AR",
+    title: "Scribble – Anonymous AR Graffiti",
     tech: "Augmented Reality, zk-Proofs, Cohere, React, NextJS",
     description:
-      "Leveraged vector embeddings and similarity search to personalize geotagged AR scribbles; used zk-proofs for secure location-based access control",
+      "AR app for leaving anonymous, geotagged graffiti in physical spaces, using Cohere for content personalization and zk-proofs to grant secure, location-based access",
     github: "https://github.com/SaiPaladugu/UofTHacks2025",
-    award: "Winner - UofTHacks 12 2025",
+    live: "https://dorahacks.io/buidl/21703/milestones",
+    award: "Winner - UofTHacks 2025",
+  },
+  {
+    title: "Model Garden",
+    tech: "Python, MCPT, Bootstrap Inference, ib_async",
+    description:
+      "Trading system deployed live on IBKR, projected to beat the S&P 500 with half the drawdown",
+    live: "https://modelgarden.vercel.app",
   },
   {
     title: "TennisBoost",
@@ -161,8 +179,9 @@ const skillCategories = [
     bgColor: "bg-emerald-50",
     tagColor: "bg-emerald-100 text-emerald-800",
     skills: [
-      "TensorFlow",
       "PyTorch",
+      "TensorFlow",
+      "XGBoost",
       "Scikit-learn",
       "Keras",
       "Hugging Face",
@@ -180,12 +199,14 @@ const skillCategories = [
     skills: [
       "Docker",
       "Kubernetes",
+      "Airflow",
+      "dbt",
+      "MLflow",
+      "LangChain",
       "Terraform",
       "GitLab CI",
       "Jenkins",
-      "Airflow",
       "Argo Workflows",
-      "MLflow",
       "DVC",
       "Git",
     ],
@@ -210,7 +231,6 @@ const skillCategories = [
       "Elasticsearch",
       "Pinecone",
       "ChromaDB",
-      "GraphDB",
     ],
   },
 ];
@@ -344,7 +364,7 @@ function Navbar() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:Saichandan03@gmail.com"
+              href="mailto:saichandan03@gmail.com"
               className="p-2 text-neutral-500 hover:text-neutral-900 transition-colors"
             >
               <Mail className="w-5 h-5" />
@@ -367,8 +387,8 @@ export default function Home() {
       <div id="home">
         <BackgroundPaths
           title="Sai Paladugu"
-          subtitle="Computer Science · Machine Learning"
-          description="Passionate about machine learning for drug discovery, predictive modeling, and computer vision. Pursuing a B.CS Honours with a Math minor at Carleton University."
+          subtitle="Machine Learning Engineer @ Shopify"
+          description="Passionate about machine learning for drug discovery, predictive modeling, and computer vision. B.CS Honours with a Math minor from Carleton University."
         >
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -397,7 +417,7 @@ export default function Home() {
               LinkedIn
             </a>
             <a
-              href="mailto:Saichandan03@gmail.com"
+              href="mailto:saichandan03@gmail.com"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 text-neutral-700 text-sm font-medium 
                 hover:border-neutral-400 hover:bg-neutral-50 transition-all hover:scale-105"
             >
@@ -541,10 +561,25 @@ export default function Home() {
               <p className="text-lg font-semibold text-neutral-700 mb-1">
                 Bachelor of Computer Science (Honours), Minor in Math
               </p>
-              <p className="text-sm text-neutral-500 mb-4">Expected: April 2026</p>
-              <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-bold">
-                GPA: 4.0
-              </span>
+              <p className="text-sm text-neutral-500 mb-4">Graduated April 2026</p>
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-block bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-sm font-bold">
+                  GPA: 4.0
+                </span>
+                {[
+                  "Summa Cum Laude",
+                  "Harry S. Southam Scholarship",
+                  "Dale L. Sheehan Award",
+                ].map((honour) => (
+                  <span
+                    key={honour}
+                    className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-full text-sm font-semibold border border-amber-200"
+                  >
+                    <Award className="w-3.5 h-3.5" />
+                    {honour}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -678,7 +713,7 @@ export default function Home() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:Saichandan03@gmail.com"
+                href="mailto:saichandan03@gmail.com"
                 className="p-3 rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 hover:text-white transition-all hover:scale-110"
               >
                 <Mail className="w-5 h-5" />

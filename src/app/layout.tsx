@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://saipaladugu.com"),
   title: "Sai Paladugu - Portfolio",
   description:
-    "Machine Learning Engineer | CS Student at Carleton University. Passionate about ML for drug discovery, predictive modeling, and computer vision.",
+    "Machine Learning Engineer II at Shopify. Passionate about ML for drug discovery, predictive modeling, and computer vision.",
 };
 
 export default function RootLayout({
